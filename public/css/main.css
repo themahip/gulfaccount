@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&family=Montserrat:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html, body{
+    overflow-x: hidden;
+    overflow-y: hidden;
+}
+
+body{
+    font-family: 'Inter', sans-serif;
+    color: white;
+    font-size: 0.9rem;
+    background: url('../img/background.png');
+    background-size: cover;
+}
+
+.mainContainer{
+    margin: 0 auto;
+    width: 90%;
+    padding-top: 10px;
+}
+
+.registerCont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #23232f;
+    text-align: center;
+    width: 360px;
+    height: 590px;
+    border-radius: 15px;
+    padding: 20px 30px;
+}
+
+.loginCont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #23232f;
+    text-align: center;
+    width: 360px;
+    height: 445px;
+    border-radius: 15px;
+    padding: 20px 30px;
+}
+
+
+.forgotCont{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background-color: #23232f;
+    text-align: center;
+    width: 360px;
+    height: 380px;
+    border-radius: 15px;
+    padding: 20px 30px;
+}
+
+.regHead{
+    font-weight: 600;
+    font-size: 1.6rem;
+    margin-top: 50px;
+}
+
+.regSubHead{
+    font-size: 0.85rem;
+    margin-top: 7px;
+    color: #767692;
+}
+
+.formCont{
+    margin-top: 40px;
+}
+
+.formCont input{
+    outline: none;
+    border: none;
+    background-color: #313141;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 7px;
+    width: 220px;
+}
+
+.formCont input::placeholder{
+    color: #5e5e7e;
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    font-weight: 500;
+}
+
+.inputTopMargin{
+    margin-top: 15px;
+}
+
+form button{
+    display: block;
+    margin: 40px auto 0 auto;
+}
+
+.signupBtn{
+    outline: none;
+    border: none;
+    padding: 15px 35px;
+    color: white;
+    background-color: #2565e6;
+    font-size: 0.8rem;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    font-size: 0.8rem;
+}
+
+.registerHref{
+    padding-top: 10px;
+}
+
+.successMessage{
+    position: absolute;
+    top: 47%;
+    font-weight: 600;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.redBtn{
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@media only screen and (max-width: 600px) {
+    .registerCont{
+        width: 100%;
+        margin: 400px auto 0 auto;
+        position: relative;
+    }
+
+    .registerWrapper{
+        margin: 0 20px;
+    }
+}

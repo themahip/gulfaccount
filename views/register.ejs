@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - AccountsGulf</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="mainContainer">
+        <div class="registerWrapper">
+            <div class="registerCont">
+                <div class="headCont">
+                    <h1 class="regHead">AccountsGulf</h1>
+                    <p class="regSubHead">Create an account to get started!</p>
+                </div>
+                <div class="formCont">
+                    <%- include("./partials/messages") %>
+                    <form action="/register" method="POST">
+                        <input type="text" placeholder="USERNAME" name="username" value="<%= typeof username != 'undefined' ? name : '' %>">
+                        <input class="inputTopMargin" type="email" placeholder="EMAIL" name="email" value="<%= typeof email != 'undefined' ? name : '' %>">
+                        <!-- <input class="inputTopMargin" type="email" placeholder="CONFIRM EMAIL"> -->
+                        <input class="inputTopMargin" type="password" placeholder="PASSWORD" name="password" value="<%= typeof password != 'undefined' ? name : '' %>">
+                        <input class="inputTopMargin" type="password" placeholder="CONFIRM PASSWORD" name="cpassword" value="<%= typeof cpassword != 'undefined' ? name : '' %>">
+                        <button class="signupBtn" type="submit">Sign Up</button>
+                    </form>
+                    <p class="registerHref"><a href="/login">register</a>">Already have an account? Sign in.</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
