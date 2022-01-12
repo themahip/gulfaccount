@@ -16,14 +16,14 @@
                     <p class="regSubHead">Login to get full access to our system.</p>
                 </div>
                 <div class="formCont">
-                    <%- include("./partials/messages") %>
-                    <form>
-                        <input type="text" placeholder="USERNAME">
-                        <input class="inputTopMargin" type="password" placeholder="PASSWORD">
+                    <%- include('./partials/messages.ejs') %>
+                    <form method="POST" action="/login">
+                        <input type="text" placeholder="email" name="email">
+                        <input class="inputTopMargin" type="password" placeholder="PASSWORD" name="password">
                         <button class="signupBtn" type="submit">Sign In</button>
                     </form><br/>
                     <p class="registerHref"><a href="/register">Don't have an account? Sign up.</a></p>
-                    <p class="registerHref"><a href="forgot.html">Forgot your password?</a></p>
+                    <!-- <p class="registerHref"><a href="forgot.html">Forgot your password?</a></p> -->
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ email:{
     type:String, 
     required:true
 },
-password:{
+hashPassword:{
     type:String,
     required:true
 },

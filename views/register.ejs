@@ -16,16 +16,16 @@
                     <p class="regSubHead">Create an account to get started!</p>
                 </div>
                 <div class="formCont">
-                    <%- include("./partials/messages") %>
+                    <%- include('./partials/messages.ejs') %>
                     <form action="/register" method="POST">
-                        <input type="text" placeholder="USERNAME" name="username" value="<%= typeof username != 'undefined' ? name : '' %>">
-                        <input class="inputTopMargin" type="email" placeholder="EMAIL" name="email" value="<%= typeof email != 'undefined' ? name : '' %>">
+                        <input type="text" placeholder="USERNAME" name="username" >
+                        <input class="inputTopMargin" type="email" placeholder="EMAIL" name="email" >
                         <!-- <input class="inputTopMargin" type="email" placeholder="CONFIRM EMAIL"> -->
-                        <input class="inputTopMargin" type="password" placeholder="PASSWORD" name="password" value="<%= typeof password != 'undefined' ? name : '' %>">
-                        <input class="inputTopMargin" type="password" placeholder="CONFIRM PASSWORD" name="cpassword" value="<%= typeof cpassword != 'undefined' ? name : '' %>">
+                        <input class="inputTopMargin"  placeholder="PASSWORD" name="password" >
+                        <input class="inputTopMargin"  placeholder="CONFIRM PASSWORD" name="cpassword" >
                         <button class="signupBtn" type="submit">Sign Up</button>
                     </form>
-                    <p class="registerHref"><a href="/login">register</a>">Already have an account? Sign in.</a></p>
+                    <p class="registerHref"><a href="/login">Already have an account? Sign in.</a></p>
                 </div>
             </div>
         </div>

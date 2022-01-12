@@ -1,23 +1,10 @@
-<% if(locals.errors){ %> <% errors.forEach(function(error) { %>
-    <div>
-      <%= error.msg %>
-      
-    
-      
-    </div>
-    <% }); %> <% } %> <% if(success_msg != ''){ %>
-    
-      <%= success_msg %>
-     
-    </div>
-    <% } %> <% if(error_msg != ''){ %>
-    <div>
-      <%= error_msg %>
-     
-    </div>
-    <% } %> <% if(error != ''){ %>
-    <div>
-      <%= error %>
-     
-    </div>
-    <% } %>
+<% if(typeof errors != 'undefined'){ %>
+ <% errors.forEach(function(error) { %>
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <%= error.msg %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <%}); %>
+  <% } %>
