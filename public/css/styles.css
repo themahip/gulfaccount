@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    overflow-y: hidden;
+    height: 100vh;
+    letter-spacing: -0.3px !important;
+    background-image: url('../img/mainBg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    font-family: 'Inter' , sans-serif !important;
+    font-size: 0.8rem !important;
+}
+
+.headerCont{
+    margin: 15px auto 0 auto;
+    width: 87%;
+}
+
+.navbar-brand img{
+    width: 130px;
+}
+
+.mainCtaBtn{
+    color: white;
+    outline: none;
+    border: none;
+    padding: 11px 35px;
+    font-size: 0.7rem;
+    margin-top: -8px;
+    border-radius: 8px;
+    vertical-align: middle;
+    background: rgb(255,182,150);
+    background: -moz-linear-gradient(-91deg, rgba(255,182,150,1) 0%, rgba(255,122,149,1) 100%);
+    background: -webkit-linear-gradient(-91deg, rgba(255,182,150,1) 0%, rgba(255,122,149,1) 100%);
+    background: linear-gradient(-91deg, rgba(255,182,150,1) 0%, rgba(255,122,149,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffb696",endColorstr="#ff7a95",GradientType=1);
+}
+
+.container{
+    text-align: center !important;
+    color: white;
+    margin-top: 100px;
+}
+
+.badge{
+    background: rgb(255,182,150);
+    background: -moz-linear-gradient(-91deg, rgba(255,182,150,1) 0%, rgba(255,122,149,1) 100%);
+    background: -webkit-linear-gradient(-91deg, rgba(255,182,150,1) 0%, rgba(255,122,149,1) 100%);
+    background: linear-gradient(-91deg, rgba(255,182,150,1) 0%, rgba(255,122,149,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#ffb696",endColorstr="#ff7a95",GradientType=1);
+    font-weight: 400;
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+}
+
+.heroSec{
+    margin-top: 150px;
+}
+
+.heroSec h1{
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 2.8rem;
+    letter-spacing: -0.2px;
+}
+
+.heroSec .siteDesc{
+    font-size: 0.7rem;
+}
+
+.buttonCont{
+    padding-top: 20px;
+}
+
+.secCtaBtn{
+    outline: none;
+    border: none;
+    border: 2px #FF9696 solid;
+    background: transparent;
+    color: white;
+    padding: 10px 35px;
+    font-size: 0.65rem;
+    vertical-align: middle;
+    border-radius: 8px;
+    margin: -10px 10px 0 10px;
+}
+
+.imgCont img{
+    margin: 70px auto 0 auto;
+    width: 280px;
+}

@@ -15,10 +15,11 @@
                     <h1 class="regHead">AccountsGulf</h1>
                     <p class="regSubHead">Login to get full access to our system.</p>
                 </div>
-                <div class="formCont">
-                    <form>
-                        <input type="text" placeholder="USERNAME">
-                        <input class="inputTopMargin" type="email" placeholder="EMAIL">
+                <div class="formCont" >
+                    <%- include('./partials/messages.ejs') %>
+                    <form action="/forgot" method="POST">
+                       
+                        <input class="inputTopMargin" type="text" placeholder="Email/Username" name="username">
                         <button class="signupBtn" type="submit">Request Verification</button>
                     </form>
                 </div>

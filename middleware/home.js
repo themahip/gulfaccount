@@ -10,27 +10,32 @@ app.use(cookieParser());
 
 dotenv.config({path:"../config.env"});
 
-const auth= async (req,res,next)=>{
+const home= async (req,res,next)=>{
 
 try {
-    
     const token= req.cookies.jwt;
     
     const sec=process.env.SECRET_KEY;
     const verifyUser= jwt.verify(token,sec);
     
     const user= await User.findOne({_id:verifyUser._id});
-    
-    req.user=user;
 
-    next();
+  
+
+  
+  if(verifyUser){
+      res.redirect("/dashboard")
+  }
+ 
+ 
 } catch (error) {
     
-    res.redirect("/")
+    next();
+
 }
    
 
 }
 
-module.exports=auth;
+module.exports=home;
    
