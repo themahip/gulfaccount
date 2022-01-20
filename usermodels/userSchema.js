@@ -2,6 +2,7 @@ const { JsonWebTokenError } = require('jsonwebtoken');
 const mongoose= require('mongoose');
 const jwt= require("jsonwebtoken");
 
+
 const Schema= mongoose.Schema;
 const userSchema= new Schema({
 username:{
@@ -21,12 +22,24 @@ date:{
     default:Date.now()
 
 },
+verified:{
+type:Boolean,
+default:false,
+},
 tokens:[{
     token:{
         type:String,
         require:true
     }
-}]
+}],
+OTPs:[
+    {
+      OTP:{
+        type:String,
+        expires:Date(Date.now()+30000)
+      } 
+    }
+]
 
 });
 userSchema.methods.generateAuthToken= async function(){
@@ -39,6 +52,17 @@ userSchema.methods.generateAuthToken= async function(){
     } catch (error) {
         console.log(error);
     }
+}
+userSchema.methods.generateOtp= async function(){
+try {
+    const OTP= Math.floor(Math.random()*1000000);
+    this.OTPs=this.OTPs.concat({OTP});
+    this.save();
+    
+    return OTP;
+} catch (error) {
+    console.log(error);
+}
 }
 const User= mongoose.model("User",userSchema);
 module.exports=User;

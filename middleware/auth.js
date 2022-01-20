@@ -15,6 +15,7 @@ const auth= async (req,res,next)=>{
 try {
     
     const token= req.cookies.jwt;
+    console.log(token);
     
     const sec=process.env.SECRET_KEY;
     const verifyUser= jwt.verify(token,sec);

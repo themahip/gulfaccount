@@ -7,10 +7,20 @@ const mongoose=require("mongoose");
 const ejs=require("ejs");
 const validator= require("email-validator");
 const jwt=require("jsonwebtoken");
+const otp= require("./verification/otp")
 const User = require("./usermodels/userSchema");
 const cookieParser= require("cookie-parser");
 const bcrypt= require("bcrypt");
+const auth2=require("./middleware/auth2")
+const { response } = require("express");
+const Token = require("./usermodels/token.js");
+const crypto= require('crypto');
+const sendEmail = require("./verification/link.js");
+const token = require("./usermodels/token.js");
+const res = require("express/lib/response");
+
 dotenv.config({path:"./config.env"});
+
 
 const PORT= 3000;
 
@@ -20,6 +30,8 @@ app.set("view engine","ejs");
 app.use(express.static("public"));
 app.use(cookieParser());
 mongoose.connect(process.env.URL);
+
+
 
 
 
@@ -86,9 +98,6 @@ app.post("/register",async(req,res)=>{
     }
     
     else{
-        console.log(username);
-      console.log(errors);
-
         const people= await User.findOne({email:email});
           if(people){
               errors.push({msg:"email already exist"});
@@ -110,13 +119,46 @@ app.post("/register",async(req,res)=>{
                 }
                 else{
                     res.render("regSuccess")
-                }
+                };
+               
             })
-        }
+            const token= await new Token({
+                userId:newUser._id,
+                token:crypto.randomBytes(32).toString("hex")
+            }).save();
+            const message=`http://localhost:3000/verify/${token.userId}/${token.token}`;
+            await sendEmail(newUser.email,"verify email", message);
+        };
+       
     }
     
 
 });
+
+app.get("/verify/:userId/:token",async(req,res)=>{
+    try {
+        
+        const user= await User.findOne({_id:req.params.userId});
+        if(!user){
+            return res.status(400).send("invalid link");
+        };
+        const token= await Token.findOne({
+            userId:user._id,
+            token:req.params.token,
+        });
+        if(!token){
+            return res.status(400).send("invalid link");
+        };
+
+        
+        await User.updateOne({_id:user._id,verified:true});
+        await Token.findByIdAndRemove(token._id);
+        res.redirect("/login")
+        
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 
 app.get("/login",home,(req,res)=>{
@@ -137,7 +179,15 @@ res.render("login");
             }
             else if(foundUser){
                 console.log(foundUser);
-                const isMatch = await bcrypt.compare(password,foundUser.hashPassword);
+
+            if(foundUser.verified===false){
+                errors.push({msg:"user not verified"});
+                res.render("login",{
+                    errors
+                })
+            }
+           
+            const isMatch = await bcrypt.compare(password,foundUser.hashPassword);
        
                
              
@@ -169,28 +219,67 @@ res.render("login");
     });
 
 
-    app.post("/forgot",(req,res)=>{
+    app.post("/forgot",async(req,res)=>{
         let errors=[];
        const username=req.body.username;
-       
 
-       User.findOne({username:username},(err,foundUser)=>{
-           if(err){
-               console.log(err);
-           }
-           if(foundUser){
-               console.log(foundUser);
+       const peopleUser= await User.findOne({username:username});
+       if(peopleUser){
+           const OTP=peopleUser.generateOtp((error)=>{
+               console.log(error);
+           });
+           console.log(OTP);
+           
+        res.cookie("mail",peopleUser.email,{
+            expire:Date(Date.now()+30000),
+            httpOnly:true
+        });
+        // otp(peopleUser.email,OTP);
+        res.redirect("/verification");
+        
+            
+       }
+       else{
+           const peopleEmail= await User.findOne({username:email});
+           
+           if(peopleEmail){
+              const OTP=peopleEmail.generateOtp();
+              console.log(OTP);
+               res.cookie("mail",peopleEmail.email,{
+                   expire:Date(Date.now()+3000),
+                   httpOnly:true
+               });
+               
+            //    otp(peopleEmail.email,OTP.otp)
+               res.redirect("/verification");
            }
            else{
-               errors.push({msg:"User not found"})
+               errors.push({msg:"User doesnot exist"});
                res.render("forgot",{
-            errors
+                   errors
                })
            }
-       })
-              
-    }  
-    )
+       }
+       
+ 
+    });
+
+app.get("/verification",auth2,(req,res)=>{
+    res.render("verification");
+    
+    
+});
+
+app.post("/verification",auth2,async(req,res)=>{
+    const email= req.email;
+    const verUser= await User.findOne({email:email});
+    const length= verUser.OTPs.length;
+    otp(verUser.email,verUser.OTPs[length-1].OTP);
+
+
+    
+
+})
 
 
 

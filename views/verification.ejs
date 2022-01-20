@@ -16,8 +16,8 @@
                     <p class="regSubHead" style="margin-top: 20px; font-size: 0.8rem;">You've succesfully registered. Please check your email for verification code to proceed further.</p>
                 </div>
                 <div class="formCont">
-                    <form>
-                        <input type="text" placeholder="VERIFICATION CODE">
+                    <form action="/verification" method="POST"> 
+                        <input type="text" placeholder="VERIFICATION CODE" name="verification">
                         <button class="signupBtn" type="submit">Continue</button>
                     </form>
                 </div>
